@@ -1,0 +1,51 @@
+{
+
+}
+
+
+program e4p2;
+const
+df= 5;
+type
+vector= array [1..df]of integer;
+procedure leern(var n: integer);
+begin
+writeln('ingresa un numero ');
+ 
+//readln(n);
+ n:= random(99);
+ writeln('se leyo el numero ',n);
+end;
+procedure cargarv(var v: vector; i: integer);
+var n:integer;
+begin
+leern(n);
+ i:=i+1;
+ if i<>df then begin
+ cargarv(v, i);
+ v[i]:= n;
+ end;
+ writeln('se leyeron tantos numeros', i);
+end;
+function max(v: vector;var ma: integer ;i: integer):integer;
+begin
+if i <>df then 
+ if v[i]> ma then begin
+ ma := v[i];
+ i:= i+1;
+ max(v, ma, i);
+end;
+max:=ma;
+end;
+var i, maximo, minimo, pos:integer;
+vec: vector;
+BEGIN
+	pos:=0;
+	maximo:= -1;
+	minimo:=999;
+	cargarv(vec, pos);
+	i:=1;
+	writeln('el maximo encontado es:',max(vec, maximo, i));
+
+END.
+
